@@ -1,0 +1,9 @@
+package exception;
+
+public class InvalidDateFormatException extends CustomValidationException {
+    private static final String message = ErrorMessage.INCORRECT_DATE.getMessage();
+
+    public InvalidDateFormatException() {
+        super(message);
+    }
+}
