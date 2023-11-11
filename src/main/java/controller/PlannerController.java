@@ -14,7 +14,7 @@ public class PlannerController {
 
     public void run() {
         OutputView.printStartMessage();
-
+        initDate();
     }
 
     private void initDate() {
