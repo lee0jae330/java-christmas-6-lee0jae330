@@ -1,6 +1,10 @@
 package validator;
 
+import exception.InvalidDateFormatException;
+import exception.OutOfDateRangeException;
+
 import util.ConstOfPlanner;
+import util.ErrorMessage;
 
 public class DateValidator {
 
@@ -15,7 +19,7 @@ public class DateValidator {
 
     public void checkRangeOfDate(int date) {
         if(date < minOfDate || date > maxOfDate) {
-            throw new IllegalArgumentException();
+            throw new OutOfDateRangeException();
         }
     }
 
@@ -23,7 +27,7 @@ public class DateValidator {
         try {
             return Integer.parseInt(input);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException();
+            throw new InvalidDateFormatException();
         }
     }
 }
