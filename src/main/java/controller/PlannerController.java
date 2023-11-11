@@ -31,4 +31,6 @@ public class PlannerController {
             initDate();
         }
     }
+
+    //TODO: 메뉴 입력 받기 및 각종 혜택 적용 여부 확인 기능 추가
 }
