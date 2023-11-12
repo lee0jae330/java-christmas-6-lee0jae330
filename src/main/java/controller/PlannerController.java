@@ -1,9 +1,13 @@
 package controller;
 
-import exception.InvalidDateFormatException;
-import validator.OrderInputFormatValidator;
 import domain.MenuNameDb;
+import domain.Order;
 import domain.VisitDate;
+import domain.repository.OrderRepository;
+
+import exception.InvalidDateFormatException;
+
+import validator.OrderInputFormatValidator;
 
 import view.InputView;
 import view.OutputView;
@@ -14,7 +18,6 @@ import java.util.List;
 public class PlannerController {
 
     public void run() {
-        MenuNameDb menuNameDB = new MenuNameDb();
         OutputView.printStartMessage();
         VisitDate visitDate = initVisitDate();
 
@@ -33,9 +36,20 @@ public class PlannerController {
         String input = InputView.enterOrder();
         return parsedOrder(input);
     }
-    private void initOrderRepository() {
-        List<String> orders = enterOrder();
 
+    private OrderRepository initOrderRepository() {
+        OrderRepository orderRepository = new OrderRepository();
+        List<String> orders = enterOrder();
+        try{
+            for(String orderString : orders) {
+                Order order = new Order(orderString);
+
+            }
+        } catch (IllegalArgumentException e) {
+            return initOrderRepository();
+        }
+        
+        return orderRepository;
 
     }
 
