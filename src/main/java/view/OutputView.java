@@ -9,4 +9,8 @@ public class OutputView {
     public static void printStartMessage() {
         System.out.println(OutputMessage.PROGRAM_START_MSG.getMessage(MONTH));
     }
+
+    public static void printError(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
