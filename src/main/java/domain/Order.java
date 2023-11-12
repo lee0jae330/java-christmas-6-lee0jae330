@@ -1,5 +1,15 @@
 package domain;
 
+import java.util.List;
+
+import validator.OrderFormatValidator;
+
 public class Order {
-    //TODO: 클래스 변수 추가
+    private String menu;
+    private int quantity;
+
+    public Order (String input) {
+        List<String> order = OrderFormatValidator.checkOrderFormat(input);
+    }
+
 }
