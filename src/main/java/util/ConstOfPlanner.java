@@ -4,7 +4,9 @@ public enum ConstOfPlanner {
     MONTH(12),
     MIN_OF_DATE(1),
     MAX_OF_DATE(31),
-    DATE_OF_CHRISTMAS(25);
+    DATE_OF_CHRISTMAS(25),
+    MAX_NUM_OF_ORDER(20),
+    MIN_NUM_OF_ORDER(1);
 
     private final int number;
 
