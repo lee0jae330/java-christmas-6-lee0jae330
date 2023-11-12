@@ -11,7 +11,7 @@ public class MenuNameDB {
     List<String> appetizer = MenuNames.APPETIZER.getMenuName();
     List<String> mainDish = MenuNames.MAIN_DISH.getMenuName();
     List<String> dessert = MenuNames.DESSERT.getMenuName();
-    List<String> drink = MenuNames.DESSERT.getMenuName();
+    List<String> drink = MenuNames.DRINK.getMenuName();
 
     public void initDB() {
         menuDB.addAll(appetizer);
@@ -22,5 +22,9 @@ public class MenuNameDB {
 
     public boolean isInMenuDB(String name) {
         return menuDB.contains(name);
+    }
+
+    public Set<String> getMenuDB() {
+        return menuDB;
     }
 }
