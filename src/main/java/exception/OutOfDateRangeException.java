@@ -3,7 +3,7 @@ package exception;
 import util.ErrorMessage;
 
 public class OutOfDateRangeException extends DateException {
-    public InvalidDateFormatException() {
+    public OutOfDateRangeException() {
         super(ErrorMessage.INCORRECT_DATE.getMessage());
     }
 }
