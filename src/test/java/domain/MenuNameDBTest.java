@@ -10,12 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 class MenuNameDBTest {
-    private final MenuNameDB menuNameDB = new MenuNameDB();
-
-    @BeforeEach
-    void init() {
-        menuNameDB.initDB();
-    }
+    private final MenuNameDb menuNameDB = new MenuNameDb();
 
     @DisplayName("메뉴 목록이 초기화 됐는지 확인")
     @Test
