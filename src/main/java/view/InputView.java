@@ -14,12 +14,13 @@ public class InputView {
     public static String enterDate() {
         System.out.println(InputMessage.ENTER_DATE.getMessage(MONTH));
         String input = Console.readLine();
-        return inputValidator.checkInputValidation(input);
+        return inputValidator.checkDateValidation(input);
     }
 
-    public static String enterMenu() {
+    public static String enterOrder() {
         System.out.println(InputMessage.ENTER_MENU.getMessage(MONTH));
         String input = Console.readLine();
-        return  inputValidator.checkInputValidation(input);
+        return  inputValidator.checkOrderValidation(input);
     }
+
 }
