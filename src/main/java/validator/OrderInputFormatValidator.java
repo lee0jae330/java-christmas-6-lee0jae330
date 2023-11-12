@@ -12,6 +12,7 @@ public class OrderInputFormatValidator {
     public static void checkOrderInputFormatValidator(String input) {
         findConsecutiveCommas(input);
         checkOrderStartWithComma(input);
+        checkOrderEndWithComma(input);
     }
 
     private static void checkOrderEndWithComma(String input) {
