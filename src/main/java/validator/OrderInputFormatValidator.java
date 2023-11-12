@@ -1,4 +1,4 @@
-package controller.validator;
+package validator;
 
 import exception.InvalidOrderFormatException;
 
