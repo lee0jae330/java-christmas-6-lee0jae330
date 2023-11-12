@@ -19,6 +19,26 @@ public class PlannerController {
         VisitDate visitDate = initVisitDate();
 
     }
+    private List<String> parsedOrder(String input) {
+        try {
+            OrderInputFormatValidator.checkOrderInputFormatValidator(input);
+            return Arrays.asList(input.split(","));
+        } catch (InvalidDateFormatException e) {
+            return enterOrder();
+        }
+
+    }
+
+    private List<String> enterOrder() {
+        String input = InputView.enterOrder();
+        return parsedOrder(input);
+    }
+    private void initOrderRepository() {
+        List<String> orders = enterOrder();
+
+
+    }
+
     private VisitDate initVisitDate() {
         try {
             return new VisitDate(InputView.enterDate());
