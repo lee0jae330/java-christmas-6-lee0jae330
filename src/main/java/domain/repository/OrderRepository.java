@@ -1,5 +1,22 @@
 package domain.repository;
 
+import domain.Order;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class OrderRepository {
-    //TODO: 클래스 변수 추가
+    Map <Order,Integer> orders;
+
+    public OrderRepository() {
+        this.orders = new HashMap<>();
+    }
+
+    public void saveOrder(Order order) {
+
+    }
+
+    private void checkDuplicateMenu(Order order) {
+        
+    }
 }
