@@ -1,10 +1,13 @@
 package domain;
 
+import validator.DateValidator;
+
 public class VisitDate {
     private int date;
+    private final DateValidator dateValidator = new DateValidator();
 
-    public VisitDate(int date) {
-        this.date = date;
+    public VisitDate(String input) {
+        this.date = dateValidator.checkDateValidation(input);
     }
 
 }
