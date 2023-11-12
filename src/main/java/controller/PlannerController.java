@@ -2,7 +2,7 @@ package controller;
 
 import exception.InvalidDateFormatException;
 import validator.OrderInputFormatValidator;
-import domain.MenuNameDB;
+import domain.MenuNameDb;
 import domain.VisitDate;
 
 import view.InputView;
@@ -14,7 +14,7 @@ import java.util.List;
 public class PlannerController {
 
     public void run() {
-        MenuNameDB menuNameDB = initMenuDB();
+        MenuNameDb menuNameDB = new MenuNameDb();
         OutputView.printStartMessage();
         VisitDate visitDate = initVisitDate();
 
@@ -46,11 +46,5 @@ public class PlannerController {
             OutputView.printError(e.getMessage());
             return initVisitDate();
         }
-    }
-
-    private MenuNameDB initMenuDB() {
-        MenuNameDB menuNameDB = new MenuNameDB();
-        menuNameDB.initDB();
-        return menuNameDB;
     }
 }
