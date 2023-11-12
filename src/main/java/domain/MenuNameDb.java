@@ -1,14 +1,19 @@
 package domain;
 
+import util.Appetizer;
 import util.MenuNames;
 
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 public class MenuNameDb {
+    Map<String,Integer> menuDB = new HashMap<>();
     Set<String> menuDB = new HashSet<>();
-    List<String> appetizer = MenuNames.APPETIZER.getMenuName();
+
+    Map<String,Integer> appetizer;
+
+    
     List<String> mainDish = MenuNames.MAIN_DISH.getMenuName();
     List<String> dessert = MenuNames.DESSERT.getMenuName();
     List<String> drink = MenuNames.DRINK.getMenuName();
@@ -17,7 +22,15 @@ public class MenuNameDb {
         initDb();
     }
 
-    public void initDb() {
+    private void initAppetizer() {
+        appetizer = Appetizer.getAllAppetizer();
+    }
+
+    private void initMainDish() {
+        
+    }
+
+    private void initDb() {
         menuDB.addAll(appetizer);
         menuDB.addAll(mainDish);
         menuDB.addAll(dessert);
