@@ -1,10 +1,15 @@
 package controller;
 
+import exception.InvalidDateFormatException;
+import validator.OrderInputFormatValidator;
 import domain.MenuNameDB;
 import domain.VisitDate;
 
 import view.InputView;
 import view.OutputView;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class PlannerController {
 
@@ -16,8 +21,7 @@ public class PlannerController {
     }
     private VisitDate initVisitDate() {
         try {
-            VisitDate visitDate = new VisitDate(InputView.enterDate());
-            return visitDate;
+            return new VisitDate(InputView.enterDate());
         } catch (IllegalArgumentException e) {
             OutputView.printError(e.getMessage());
             return initVisitDate();
