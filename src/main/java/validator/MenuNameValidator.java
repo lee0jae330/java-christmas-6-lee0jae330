@@ -1,6 +1,7 @@
 package validator;
 
 import domain.MenuNameDb;
+
 import exception.MenuIsNotInMenuDbException;
 
 public class MenuNameValidator {
