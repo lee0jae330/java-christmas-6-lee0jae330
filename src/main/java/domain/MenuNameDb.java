@@ -1,6 +1,9 @@
 package domain;
 
 import util.Appetizer;
+import util.Dessert;
+import util.Drink;
+import util.MainDish;
 import util.MenuNames;
 
 import java.util.HashMap;
@@ -8,40 +11,49 @@ import java.util.List;
 import java.util.Map;
 
 public class MenuNameDb {
+
     Map<String,Integer> menuDB = new HashMap<>();
-    Set<String> menuDB = new HashSet<>();
-
     Map<String,Integer> appetizer;
-
+    Map<String,Integer> mainDish;
+    Map<String,Integer> dessert;
+    Map<String,Integer> drink;
     
-    List<String> mainDish = MenuNames.MAIN_DISH.getMenuName();
-    List<String> dessert = MenuNames.DESSERT.getMenuName();
-    List<String> drink = MenuNames.DRINK.getMenuName();
-
     public MenuNameDb() {
+        setAppetizer();
+        setMainDish();
+        setDessert();
+        setDrink();
         initDb();
     }
 
-    private void initAppetizer() {
-        appetizer = Appetizer.getAllAppetizer();
+    private void setAppetizer() {
+        appetizer = Appetizer.getAllMenu();
     }
 
-    private void initMainDish() {
-        
+    private void setMainDish() {
+        mainDish = MainDish.getAllMenu();
+    }
+
+    private void setDessert() {
+        dessert = Dessert.getAllMenu();
+    }
+
+    private void setDrink() {
+        drink = Drink.getAllMenu();
     }
 
     private void initDb() {
-        menuDB.addAll(appetizer);
-        menuDB.addAll(mainDish);
-        menuDB.addAll(dessert);
-        menuDB.addAll(drink);
+        menuDB.putAll(appetizer);
+        menuDB.putAll(mainDish);
+        menuDB.putAll(dessert);
+        menuDB.putAll(drink);
     }
 
     public boolean isInMenuDB(String name) {
-        return menuDB.contains(name);
+        return menuDB.containsKey(name);
     }
 
-    public Set<String> getMenuDB() {
+    public Map<String,Integer> getMenuDB() {
         return menuDB;
     }
 }
