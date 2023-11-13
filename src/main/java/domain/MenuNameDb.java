@@ -1,14 +1,12 @@
 package domain;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import util.Appetizer;
 import util.Dessert;
 import util.Drink;
 import util.MainDish;
-import util.MenuNames;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class MenuNameDb {
 
@@ -51,6 +49,26 @@ public class MenuNameDb {
 
     public boolean isInMenuDB(String name) {
         return menuDB.containsKey(name);
+    }
+
+    public String findCategory(String name) {
+        if(appetizer.containsKey(name)) {
+            return Appetizer.CATEGORY.getMenu();
+        }
+        if(mainDish.containsKey(name)) {
+            return MainDish.CATEGORY.getMenu();
+        }
+        if(dessert.containsKey(name)) {
+            return Dessert.CATEGORY.getMenu();
+        }
+        if(drink.containsKey(name)) {
+            return Drink.CATEGORY.getMenu();
+        }
+        return null;
+    }
+
+    public int getPrice(String name) {
+        return menuDB.get(name);
     }
 
     public Map<String,Integer> getMenuDB() {
