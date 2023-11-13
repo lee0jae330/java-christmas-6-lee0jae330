@@ -8,12 +8,26 @@ import validator.QuantityValidator;
 
 public class Order {
     private String menu;
+    private int price;
     private int quantity;
+    private String category;
 
     public Order (String input) {
         List<String> order = OrderFormatValidator.checkOrderFormat(input);
         setMenu(order.get(0));
         setQuantity(order.get(1));
+    }
+
+    public String getMenu() {
+        return menu;
+    }
+    
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     private void setMenu(String menuName) {
