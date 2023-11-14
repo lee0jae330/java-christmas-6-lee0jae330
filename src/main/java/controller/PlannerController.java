@@ -46,6 +46,7 @@ public class PlannerController {
             newOrder.setPrice(menuNameDb.getPrice(newOrder.getMenu()));
             orderRepository.saveOrder(newOrder);
         }
+        orderRepository.checkAllMenuAreDrink();
         return orderRepository;
     }
 
