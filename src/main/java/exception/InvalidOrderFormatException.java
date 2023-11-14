@@ -4,6 +4,6 @@ import util.ErrorMessage;
 
 public class InvalidOrderFormatException extends OrderException {
     public InvalidOrderFormatException() {
-        super(ErrorMessage.INCORRECT_DATE.getMessage());
+        super(ErrorMessage.INCORRECT_ORDER.getMessage());
     }
 }
