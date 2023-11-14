@@ -12,7 +12,9 @@ import java.util.Map;
 import java.util.Set;
 
 import util.ConstOfPlanner;
+import util.Dessert;
 import util.Drink;
+import util.MainDish;
 
 public class OrderRepository {
     private final Set<Order> orders;
@@ -25,6 +27,26 @@ public class OrderRepository {
         checkDuplicateMenu(order);
         orders.add(order);
         checkAllMenuQuantityRange();
+    }
+
+    public int numberOfMainDish() {
+        int count = 0;
+        for(Order order : orders) {
+            if(order.isEqualCategory(MainDish.CATEGORY.getMenu())) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int numberOfDessert() {
+        int count = 0;
+        for(Order order : orders) {
+            if(order.isEqualCategory(Dessert.CATEGORY.getMenu())) {
+                count++;
+            }
+        }
+        return count;
     }
 
     public Map<String,Integer> getMenuInformation() {
