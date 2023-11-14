@@ -1,13 +1,15 @@
 package view;
 
+import java.text.NumberFormat;
 import java.util.Map;
 import java.util.Set;
 
 import util.ConstOfPlanner;
-import util.Drink;
 import util.OutputMessage;
 
 public class OutputView {
+
+    private static final NumberFormat formatter = NumberFormat.getNumberInstance();
     private static final int MONTH = ConstOfPlanner.MONTH.getNumber();
 
     public static void printStartMessage() {
@@ -35,14 +37,14 @@ public class OutputView {
 
     public static void printPriceBeforeDiscount(int price) {
         System.out.println(OutputMessage.TOTAL_PRICE_BEFORE_DISCOUNT.getMessage());
-        System.out.println(price+"원");
+        System.out.println(formatter.format(price)+"원");
         printEmptyLine();
     }
 
-    public static void printGiveawayMenu(int giveawayEvent) {
+    public static void printGiveawayMenu(int giveawayEvent, String freeMenu, int amount) {
         System.out.println(OutputMessage.GIVEAWAY_MENU.getMessage());
         if(giveawayEvent > 0) {
-            System.out.println(Drink.CHAMPAGNE.getMenu()+" 1개");
+            System.out.println(freeMenu+" "+amount+"개");
             printEmptyLine();
             return;
         }
@@ -67,43 +69,43 @@ public class OutputView {
 
     private static void printChristmas(int christmas) {
         if(christmas > 0) {
-            System.out.println(OutputMessage.CHRISTMAS_DDAY_DISCOUNT.getMessage(-christmas));
+            System.out.println(OutputMessage.CHRISTMAS_DDAY_DISCOUNT.getMessage(formatter.format(-christmas)));
         }
     }
 
     private static void printWeekday(int weekday) {
         if(weekday > 0) {
-            System.out.println(OutputMessage.WEEKDAY_DISCOUNT.getMessage(-weekday));
+            System.out.println(OutputMessage.WEEKDAY_DISCOUNT.getMessage(formatter.format(-weekday)));
         }
     }
 
     private static void printWeekend(int weekend) {
         if(weekend > 0) {
-            System.out.println(OutputMessage.WEEKEND_DISCOUNT.getMessage(-weekend));
+            System.out.println(OutputMessage.WEEKEND_DISCOUNT.getMessage(formatter.format(-weekend)));
         }
     }
 
     private static void printSpecial(int special) {
         if(special > 0) {
-            System.out.println(OutputMessage.SPECIAL_DISCOUNT.getMessage(-special));
+            System.out.println(OutputMessage.SPECIAL_DISCOUNT.getMessage(formatter.format(-special)));
         }
     }
 
     private static void printGiveawayEvent(int giveawayEvent) {
         if(giveawayEvent > 0) {
-            System.out.println(OutputMessage.GIVEAWAY_EVENT.getMessage(-giveawayEvent));
+            System.out.println(OutputMessage.GIVEAWAY_EVENT.getMessage(formatter.format(-giveawayEvent)));
         }
     }
 
     public static void printTotalBenefit(int price) {
         System.out.println(OutputMessage.TOTAL_BENEFIT_PRICE.getMessage());
-        System.out.println(-price+"원");
+        System.out.println(formatter.format(-price)+"원");
         printEmptyLine();
     }
     
     public static void printPriceAfterDiscount(int price) {
         System.out.println(OutputMessage.TOTAL_PRICE_AFTER_DISCOUNT.getMessage());
-        System.out.println(price+"원");
+        System.out.println(formatter.format(price)+"원");
         printEmptyLine();
     }
 
