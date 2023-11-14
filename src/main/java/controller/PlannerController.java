@@ -25,6 +25,11 @@ public class PlannerController {
         printBenefitPreview(visitDate);
         printOrders(orderRepository);
         Price price = initPrice(orderRepository);
+        printPriceBeforeDiscount(price);
+    }
+
+    private void printPriceBeforeDiscount(Price price) {
+        OutputView.printPriceBeforeDiscount(price.getTotalPriceBeforeDiscount());
     }
 
     private Price initPrice(OrderRepository orderRepository) {
