@@ -2,6 +2,7 @@ package controller;
 
 import domain.MenuNameDb;
 import domain.Order;
+import domain.Price;
 import domain.VisitDate;
 import domain.repository.OrderRepository;
 
@@ -23,6 +24,11 @@ public class PlannerController {
         OrderRepository orderRepository = initOrderRepository();
         printBenefitPreview(visitDate);
         printOrders(orderRepository);
+        Price price = initPrice(orderRepository);
+    }
+
+    private Price initPrice(OrderRepository orderRepository) {
+        return new Price(orderRepository.calculateTotalPrice());
     }
 
     private void printBenefitPreview(VisitDate visitDate) {
