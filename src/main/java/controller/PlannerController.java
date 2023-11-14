@@ -6,13 +6,14 @@ import domain.VisitDate;
 import domain.repository.OrderRepository;
 
 import exception.InvalidOrderFormatException;
+
+import java.util.Arrays;
+import java.util.List;
+
 import validator.OrderInputFormatValidator;
 
 import view.InputView;
 import view.OutputView;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class PlannerController {
 
