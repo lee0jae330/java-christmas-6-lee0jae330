@@ -8,11 +8,15 @@ import domain.VisitDate;
 import domain.repository.OrderRepository;
 
 import exception.InvalidOrderFormatException;
-import util.Dessert;
-import util.MainDish;
 
 import java.util.Arrays;
 import java.util.List;
+
+import util.ConstOfPlanner;
+import util.Dessert;
+import util.Drink;
+import util.MainDish;
+
 
 import validator.OrderInputFormatValidator;
 
@@ -20,6 +24,9 @@ import view.InputView;
 import view.OutputView;
 
 public class PlannerController {
+
+    private final String GIVEAWAY_MENU = Drink.CHAMPAGNE.getMenu();
+    private final int AMOUNT_OF_GIVEAWAY_MENU = ConstOfPlanner.AMOUNT_OF_GIVEAWAY_MENU.getNumber();
 
     public void run() {
         OutputView.printStartMessage();
@@ -30,9 +37,32 @@ public class PlannerController {
         Price price = initPrice(orderRepository);
         printPriceBeforeDiscount(price);
         Discount discount = initDiscount(price,visitDate,orderRepository);
+        printGiveawayMenu(discount, GIVEAWAY_MENU, AMOUNT_OF_GIVEAWAY_MENU);
         printBenefits(discount);
-        OutputView.printGiveawayMenu(discount.getGiveawayEvent());
-        OutputView.printTotalBenefit(discount.calculateTotalDiscount());
+        printTotalBenefit(discount.calculateTotalDiscount());
+        printPriceAfterDiscount(price,discount);
+        printEventBadge(discount.getBadge());
+    }
+
+    private void printTotalBenefit(int amountOfBenefit) {
+        OutputView.printTotalBenefit(amountOfBenefit);
+    }
+
+    private void printGiveawayMenu(Discount discount, String menu, int amount) {
+        OutputView.printGiveawayMenu(discount.getGiveawayEvent(),menu,amount);
+    }
+
+    private void printEventBadge(String badge) {
+        OutputView.printBadge(badge);
+    }
+
+    private void printPriceAfterDiscount(Price price, Discount discount) {
+        calculatePriceAfterDiscount(price,discount);
+        OutputView.printPriceAfterDiscount(price.getTotalPriceAfterDiscount());
+    }
+
+    private void calculatePriceAfterDiscount(Price price, Discount discount) {
+        price.calculateTotalPriceAfterDiscount(discount.calculateRealDiscountAmount());
     }
 
     private void printBenefits(Discount discount) {
@@ -55,6 +85,8 @@ public class PlannerController {
         discount.adjustSpecialDiscount(date.isSpecialDay());
         discount.adjustGiveawayEvent(price.getTotalPriceBeforeDiscount());
         discount.analyzeBadge();
+
+
         return discount;
     }
 
