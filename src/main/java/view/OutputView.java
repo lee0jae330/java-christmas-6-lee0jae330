@@ -32,6 +32,12 @@ public class OutputView {
         printEmptyLine();
     }
 
+    public static void printPriceBeforeDiscount(int price) {
+        System.out.println(OutputMessage.TOTAL_PRICE_BEFORE_DISCOUNT.getMessage());
+        System.out.println(price+"원");
+        printEmptyLine();
+    }
+
     public static void printEmptyLine() {
         System.out.println();
     }
