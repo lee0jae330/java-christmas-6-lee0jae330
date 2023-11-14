@@ -5,7 +5,6 @@ import domain.Order;
 import domain.VisitDate;
 import domain.repository.OrderRepository;
 
-import exception.InvalidDateFormatException;
 import exception.InvalidOrderFormatException;
 import validator.OrderInputFormatValidator;
 
@@ -27,6 +26,7 @@ public class PlannerController {
             OrderInputFormatValidator.checkOrderInputFormatValidator(input);
             return Arrays.asList(input.split(","));
         } catch (InvalidOrderFormatException e) {
+            OutputView.printError(e.getMessage());
             return initOrder();
         }
 
@@ -37,20 +37,26 @@ public class PlannerController {
         return parsedOrder(input);
     }
 
-    private OrderRepository initOrderRepository() {
+    private OrderRepository processOrder(List<String> orders) {
         OrderRepository orderRepository = new OrderRepository();
         MenuNameDb menuNameDb = new MenuNameDb();
-        List<String> orders = initOrder();
-        try{
-            for(String orderString : orders) {
-                Order order = new Order(orderString);
-                order.setCategory(menuNameDb.findCategory(order.getMenu()));
-                order.setPrice(menuNameDb.getPrice(order.getMenu()));
-            }
-        } catch (IllegalArgumentException e) {
-            return initOrderRepository();
+        for(String order : orders) {
+            Order newOrder = new Order(order);
+            newOrder.setCategory(menuNameDb.findCategory(newOrder.getMenu()));
+            newOrder.setPrice(menuNameDb.getPrice(newOrder.getMenu()));
+            orderRepository.saveOrder(newOrder);
         }
         return orderRepository;
+    }
+
+    private OrderRepository initOrderRepository() {
+        List<String> orders = initOrder();
+        try{
+            return processOrder(orders);
+        } catch (IllegalArgumentException e) {
+            OutputView.printError(e.getMessage());
+            return initOrderRepository();
+        }
     }
 
     private VisitDate initVisitDate() {
