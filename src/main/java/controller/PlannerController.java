@@ -21,6 +21,7 @@ public class PlannerController {
         VisitDate visitDate = initVisitDate();
         OrderRepository orderRepository = initOrderRepository();
     }
+
     private List<String> parsedOrder(String input) {
         try {
             OrderInputFormatValidator.checkOrderInputFormatValidator(input);
@@ -29,12 +30,16 @@ public class PlannerController {
             OutputView.printError(e.getMessage());
             return initOrder();
         }
-
     }
 
     private List<String> initOrder() {
-        String input = InputView.enterOrder();
-        return parsedOrder(input);
+        try {
+            String input = InputView.enterOrder();
+            return parsedOrder(input);
+        } catch (InvalidOrderFormatException e) {
+            OutputView.printError(e.getMessage());
+            return initOrder();
+        }
     }
 
     private OrderRepository processOrder(List<String> orders) {
