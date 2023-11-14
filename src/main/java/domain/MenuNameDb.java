@@ -10,11 +10,11 @@ import util.MainDish;
 
 public class MenuNameDb {
 
-    Map<String,Integer> menuDB = new HashMap<>();
-    Map<String,Integer> appetizer;
-    Map<String,Integer> mainDish;
-    Map<String,Integer> dessert;
-    Map<String,Integer> drink;
+    private final Map<String,Integer> menuDB = new HashMap<>();
+    private final Map<String,Integer> appetizer = new HashMap<>(); ;
+    private final Map<String,Integer> mainDish = new HashMap<>();;
+    private final Map<String,Integer> dessert = new HashMap<>();;
+    private final Map<String,Integer> drink = new HashMap<>();;
     
     public MenuNameDb() {
         setAppetizer();
@@ -25,19 +25,19 @@ public class MenuNameDb {
     }
 
     private void setAppetizer() {
-        appetizer = Appetizer.getAllMenu();
+        appetizer.putAll(Appetizer.getAllMenu());
     }
 
     private void setMainDish() {
-        mainDish = MainDish.getAllMenu();
+        mainDish.putAll(MainDish.getAllMenu());
     }
 
     private void setDessert() {
-        dessert = Dessert.getAllMenu();
+        dessert.putAll(Dessert.getAllMenu());
     }
 
     private void setDrink() {
-        drink = Drink.getAllMenu();
+        drink.putAll(Drink.getAllMenu());
     }
 
     private void initDb() {
