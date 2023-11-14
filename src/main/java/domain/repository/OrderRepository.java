@@ -16,6 +16,14 @@ public class OrderRepository {
 
     }
 
+    public int calculateTotalPrice() {
+        int totalPrice = 0;
+        for(Order order : orders) {
+            totalPrice += order.getPrice() * order.getQuantity();
+        }
+        return totalPrice;
+    }
+
     private void checkDuplicateMenu(Order order) {
         for(Order o : orders) {
             if(o.getMenu().equals(order.getMenu())) {
