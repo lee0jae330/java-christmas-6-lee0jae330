@@ -1,5 +1,8 @@
 package view;
 
+import java.util.Map;
+import java.util.Set;
+
 import util.ConstOfPlanner;
 import util.OutputMessage;
 
@@ -12,5 +15,24 @@ public class OutputView {
 
     public static void printError(String errorMessage) {
         System.out.println(errorMessage);
+    }
+
+    public static void printBenefitPreview(int date) {
+        System.out.println(OutputMessage.BENEFIT_PREVIEW.getMessage(MONTH,date));
+        printEmptyLine();
+    }
+
+    public static void printOrders(Map<String,Integer>orderInformation) {
+        Set<String> menuNames = orderInformation.keySet();
+
+        System.out.println(OutputMessage.ORDERED_MENU.getMessage());
+        for(String name : menuNames) {
+            System.out.printf("%s %d개\n",name,orderInformation.get(name));
+        }
+        printEmptyLine();
+    }
+
+    public static void printEmptyLine() {
+        System.out.println();
     }
 }
