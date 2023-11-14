@@ -23,4 +23,18 @@ public class OrderRepository {
             }
         }
     }
+
+    private int calculateAllMenusQuantity() {
+        int totalQuantity = 0;
+        for(Order order :  orders) {
+            totalQuantity += order.getQuantity();
+        }
+        return totalQuantity;
+    }
+
+    private void checkAllMenuQuantityRange() {
+        if(calculateAllMenusQuantity() > ConstOfPlanner.MAX_NUM_OF_ORDER.getNumber()) {
+            throw new OutOfOrderNumberRangeException();
+        }
+    }
 }
