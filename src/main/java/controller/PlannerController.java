@@ -21,6 +21,16 @@ public class PlannerController {
         OutputView.printStartMessage();
         VisitDate visitDate = initVisitDate();
         OrderRepository orderRepository = initOrderRepository();
+        printBenefitPreview(visitDate);
+        printOrders(orderRepository);
+    }
+
+    private void printBenefitPreview(VisitDate visitDate) {
+        OutputView.printBenefitPreview(visitDate.getDate());
+    }
+
+    private void printOrders(OrderRepository orderRepository) {
+        OutputView.printOrders(orderRepository.getMenuInformation());
     }
 
     private List<String> parsedOrder(String input) {
