@@ -17,6 +17,10 @@ public class OrderRepository {
     }
 
     private void checkDuplicateMenu(Order order) {
-        
+        for(Order o : orders) {
+            if(o.getMenu().equals(order.getMenu())) {
+                throw new DuplicateMenuException();
+            }
+        }
     }
 }
