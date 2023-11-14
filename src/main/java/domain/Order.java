@@ -32,7 +32,7 @@ public class Order {
 
     private void setMenu(String menuName) {
         MenuNameValidator.checkMenuNameValidation(menuName);
-        this.menu = menu;
+        this.menu = menuName;
     }
     
     private void setQuantity(String number) {
