@@ -43,6 +43,10 @@ public class Discount {
         return 0;
     }
 
+    public String getBadge(){
+        return badge;
+    }
+
     public int calculateRealDiscountAmount() {
         return christmasDday + weekday + weekend + special;
     }
