@@ -8,6 +8,8 @@ import domain.VisitDate;
 import domain.repository.OrderRepository;
 
 import exception.InvalidOrderFormatException;
+import util.Dessert;
+import util.MainDish;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,15 +29,28 @@ public class PlannerController {
         printOrders(orderRepository);
         Price price = initPrice(orderRepository);
         printPriceBeforeDiscount(price);
-        Discount discount = initDiscount(price);
+        Discount discount = initDiscount(price,visitDate,orderRepository);
     }
 
-    private Discount initDiscount(Price price) {
+    private Discount adjustDiscount(Price price, VisitDate date, OrderRepository orders) {
         Discount discount = new Discount();
-        if(!price.checkDiscoutEligibility()) {
-            return discount;
-        }
+        String dessert = Dessert.CATEGORY.getMenu();
+        String mainDish = MainDish.CATEGORY.getMenu();
+        
+        discount.adjustChristmasDdayDiscount(date.beforeChristmasDay(), date.getDate());
+        discount.adjustWeekdayDiscount(date.isWeekday(), orders.numberOfCategoryMenu(dessert));
+        discount.adjustWeekendDiscount(date.isWeekend(), orders.numberOfCategoryMenu(mainDish));
+        discount.adjustSpecialDiscount(date.isSpecialDay());
+        discount.adjustGiveawayEvent(price.getTotalPriceBeforeDiscount());
+        discount.analyzeBadge();
         return discount;
+    }
+
+    private Discount initDiscount(Price price, VisitDate visitDate, OrderRepository orders) {
+        if(!price.checkDiscoutEligibility()) {
+            return new Discount();
+        }
+        return adjustDiscount(price, visitDate, orders);
     }
 
     private void printPriceBeforeDiscount(Price price) {
