@@ -10,4 +10,7 @@ public class VisitDate {
         this.date = dateValidator.checkDateValidation(input);
     }
 
+    public int getDate() {
+        return date;
+    }
 }
