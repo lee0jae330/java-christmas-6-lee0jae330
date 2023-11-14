@@ -20,6 +20,29 @@ public class Discount {
         this.badge = "";
     }
 
+    public int getChristmasDday() {
+        return christmasDday;
+    }
+
+    public int getWeekday() {
+        return weekday;
+    }
+
+    public int getWeekend() {
+        return weekend;
+    }
+
+    public int getSpecial() {
+        return special;
+    }
+
+    public int getGiveawayEvent() {
+        if(isGiveawayEvent) {
+            return Drink.CHAMPAGNE.getPrice();
+        }
+        return 0;
+    }
+
     public int calculateRealDiscountAmount() {
         return christmasDday + weekday + weekend + special;
     }
