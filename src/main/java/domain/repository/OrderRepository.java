@@ -2,18 +2,25 @@ package domain.repository;
 
 import domain.Order;
 
-import java.util.HashMap;
-import java.util.Map;
+import exception.DuplicateMenuException;
+import exception.OutOfOrderNumberRangeException;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import util.ConstOfPlanner;
 
 public class OrderRepository {
-    Map <Order,Integer> orders;
+    Set<Order> orders;
 
     public OrderRepository() {
-        this.orders = new HashMap<>();
+        this.orders = new HashSet<>();
     }
 
     public void saveOrder(Order order) {
-
+        checkDuplicateMenu(order);
+        orders.add(order);
+        checkAllMenuQuantityRange();
     }
 
     public int calculateTotalPrice() {
