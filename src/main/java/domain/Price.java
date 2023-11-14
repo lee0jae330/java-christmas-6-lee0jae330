@@ -22,4 +22,8 @@ public class Price {
     public int getTotalPriceBeforeDiscount() {
         return totalPriceBeforeDiscount;
     }
+
+    public int getTotalPriceAfterDiscount() {
+        return totalPriceAfterDiscount;
+    }
 }
