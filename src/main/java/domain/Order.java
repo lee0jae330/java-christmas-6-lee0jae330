@@ -29,6 +29,10 @@ public class Order {
     public int getPrice() {
         return price;
     }
+
+    public String getCategory() {
+        return category;
+    }
     
     public void setPrice(int price) {
         this.price = price;
