@@ -29,20 +29,10 @@ public class OrderRepository {
         checkAllMenuQuantityRange();
     }
 
-    public int numberOfMainDish() {
+    public int numberOfCategoryMenu(String category) {
         int count = 0;
         for(Order order : orders) {
-            if(order.isEqualCategory(MainDish.CATEGORY.getMenu())) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public int numberOfDessert() {
-        int count = 0;
-        for(Order order : orders) {
-            if(order.isEqualCategory(Dessert.CATEGORY.getMenu())) {
+            if(order.isEqualCategory(category)) {
                 count++;
             }
         }
