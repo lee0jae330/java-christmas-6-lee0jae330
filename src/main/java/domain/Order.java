@@ -18,6 +18,10 @@ public class Order {
         setQuantity(order.get(1));
     }
 
+    public boolean isEqualCategory(String category) {
+        return this.category.equals(category);
+    }
+
     public String getMenu() {
         return menu;
     }
