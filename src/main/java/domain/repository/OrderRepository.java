@@ -2,6 +2,7 @@ package domain.repository;
 
 import domain.Order;
 
+import exception.AllMenuAreDrinkException;
 import exception.DuplicateMenuException;
 import exception.OutOfOrderNumberRangeException;
 
@@ -9,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import util.ConstOfPlanner;
+import util.Drink;
 
 public class OrderRepository {
     Set<Order> orders;
@@ -29,6 +31,15 @@ public class OrderRepository {
             totalPrice += order.getPrice() * order.getQuantity();
         }
         return totalPrice;
+    }
+
+    public void checkAllMenuAreDrink() {
+        for(Order order : orders) {
+            if(!order.getCategory().equals(Drink.CATEGORY.getMenu())) {
+                return;
+            }
+        }
+        throw new AllMenuAreDrinkException();
     }
 
     private void checkDuplicateMenu(Order order) {
