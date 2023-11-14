@@ -33,7 +33,7 @@ public class OrderRepository {
         int count = 0;
         for(Order order : orders) {
             if(order.isEqualCategory(category)) {
-                count++;
+                count+= order.getQuantity();
             }
         }
         return count;
