@@ -8,11 +8,11 @@ public class QuantityValidator {
 
     public static int checkQuantityValidation(String number) {
         int quantity = checkQuantityIsNumber(number);
-        checKQuantityRange(quantity);
+        checkQuantityRange(quantity);
         return quantity;
     }
 
-    private static void checKQuantityRange(int quantity) {
+    private static void checkQuantityRange(int quantity) {
         if(quantity < ConstOfPlanner.MIN_NUM_OF_ORDER.getNumber() || quantity > ConstOfPlanner.MAX_NUM_OF_ORDER.getNumber()) {
             throw new OutOfDateRangeException();
         }   
