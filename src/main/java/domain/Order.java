@@ -21,6 +21,14 @@ public class Order {
     public String getMenu() {
         return menu;
     }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getPrice() {
+        return price;
+    }
     
     public void setPrice(int price) {
         this.price = price;
