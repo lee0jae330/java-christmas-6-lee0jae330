@@ -30,6 +30,18 @@ public class PlannerController {
         Price price = initPrice(orderRepository);
         printPriceBeforeDiscount(price);
         Discount discount = initDiscount(price,visitDate,orderRepository);
+        printBenefits(discount);
+        OutputView.printGiveawayMenu(discount.getGiveawayEvent());
+        OutputView.printTotalBenefit(discount.calculateTotalDiscount());
+    }
+
+    private void printBenefits(Discount discount) {
+        int christmas = discount.getChristmasDday();
+        int weekday = discount.getWeekday();
+        int weekend = discount.getWeekend();
+        int special = discount.getSpecial();
+        int giveawayEvent = discount.getGiveawayEvent();
+        OutputView.printAllBenefit(christmas, weekday, weekend, special, giveawayEvent);
     }
 
     private Discount adjustDiscount(Price price, VisitDate date, OrderRepository orders) {
