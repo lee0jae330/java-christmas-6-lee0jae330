@@ -6,14 +6,14 @@ import exception.AllMenuAreDrinkException;
 import exception.DuplicateMenuException;
 import exception.OutOfOrderNumberRangeException;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+
 
 import util.ConstOfPlanner;
 import util.Drink;
 
 public class OrderRepository {
-    Set<Order> orders;
+    private final Set<Order> orders;
 
     public OrderRepository() {
         this.orders = new HashSet<>();
@@ -23,6 +23,14 @@ public class OrderRepository {
         checkDuplicateMenu(order);
         orders.add(order);
         checkAllMenuQuantityRange();
+    }
+
+    public Map<String,Integer> getMenuInformation() {
+        Map<String,Integer> menuInformation = new HashMap<>();
+        for(Order o : orders) {
+            menuInformation.put(o.getMenu(),o.getQuantity());
+        }
+        return menuInformation;
     }
 
     public int calculateTotalPrice() {
