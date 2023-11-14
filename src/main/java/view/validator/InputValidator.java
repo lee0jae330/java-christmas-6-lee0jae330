@@ -1,6 +1,7 @@
 package view.validator;
 
 import exception.InvalidDateFormatException;
+import exception.InvalidOrderFormatException;
 
 
 public class InputValidator {
@@ -16,7 +17,7 @@ public class InputValidator {
 
     private void checkOrderIsEmpty(String input) {
         if(input.isEmpty()) {
-            throw new IllegalArgumentException();
+            throw new InvalidOrderFormatException();
         }
     }
 
