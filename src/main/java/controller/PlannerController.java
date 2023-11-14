@@ -1,5 +1,6 @@
 package controller;
 
+import domain.Discount;
 import domain.MenuNameDb;
 import domain.Order;
 import domain.Price;
@@ -26,6 +27,15 @@ public class PlannerController {
         printOrders(orderRepository);
         Price price = initPrice(orderRepository);
         printPriceBeforeDiscount(price);
+        Discount discount = initDiscount(price);
+    }
+
+    private Discount initDiscount(Price price) {
+        Discount discount = new Discount();
+        if(!price.checkDiscoutEligibility()) {
+            return discount;
+        }
+        return discount;
     }
 
     private void printPriceBeforeDiscount(Price price) {
