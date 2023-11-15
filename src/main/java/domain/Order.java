@@ -12,6 +12,9 @@ public class Order {
     private int quantity;
     private String category;
 
+    Order(){
+    }
+
     public Order (String input) {
         List<String> order = OrderFormatValidator.checkOrderFormat(input);
         setMenu(order.get(0));
