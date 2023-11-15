@@ -1,6 +1,7 @@
 package validator;
 
 import exception.OutOfDateRangeException;
+import exception.OutOfOrderNumberRangeException;
 import exception.QuantityNumberFormatException;
 import util.ConstOfPlanner;
 
@@ -14,7 +15,7 @@ public class QuantityValidator {
 
     private static void checkQuantityRange(int quantity) {
         if(quantity < ConstOfPlanner.MIN_NUM_OF_ORDER.getNumber() || quantity > ConstOfPlanner.MAX_NUM_OF_ORDER.getNumber()) {
-            throw new OutOfDateRangeException();
+            throw new OutOfOrderNumberRangeException();
         }   
     }
 
